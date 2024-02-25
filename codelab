@@ -1,0 +1,40 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.Period;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input nama
+        System.out.print("Nama: ");
+        String nama = scanner.nextLine();
+
+        // Input jenis kelamin
+        System.out.print("Jenis kelamin (P/L): ");
+        String jenisKelaminInput = scanner.nextLine();
+        String jenisKelamin = jenisKelaminInput.equalsIgnoreCase("P") ? "Perempuan" :
+                jenisKelaminInput.equalsIgnoreCase("L") ? "Laki-laki" : "Tidak diketahui";
+
+        // Input tanggal lahir
+        System.out.print("Tanggal lahir (YYYY-MM-DD): ");
+        String tanggalLahirInput = scanner.nextLine();
+        LocalDate tanggalLahir = LocalDate.parse(tanggalLahirInput);
+
+        // Menghitung umur berdasarkan tahun sekarang
+        LocalDate tanggalSekarang = LocalDate.now();
+        Period selisih = Period.between(tanggalLahir, tanggalSekarang);
+        int umur = selisih.getYears();
+
+        // Output data diri
+        System.out.println("\nNama: " + nama);
+        System.out.println("Jenis Kelamin: " + jenisKelamin);
+        System.out.println("Tanggal Lahir: " + tanggalLahir.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        System.out.println("Umur: " + umur + " tahun");
+
+        scanner.close();
+    }
+}
